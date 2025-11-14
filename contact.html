@@ -32,6 +32,52 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Urban Ways",
+    "url": "https://www.urbanways.co.in/contact.html",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Urban Ways",
+      "url": "https://www.urbanways.co.in",
+      "logo": "https://www.urbanways.co.in/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+917248877772",
+        "contactType": "Customer Service",
+        "email": "info@urbanways.co.in",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "823 First Floor Indira Nagar Colony Road, Vasant Vihar Phase 2",
+        "addressLocality": "Dehradun",
+        "addressRegion": "Uttarakhand",
+        "postalCode": "248006",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 30.315744203889498,
+        "longitude": 77.9983926791279
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "10:00",
+          "closes": "18:00"
+        }
+      ]
+    }
+  }
+  </script>
+
   <!-- Web App Manifest -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#e91e63">
@@ -40,7 +86,6 @@
 
   <!-- Humans.txt -->
   <link rel="author" href="/humans.txt">
-
 </head>
 <body>
 

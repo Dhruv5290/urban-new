@@ -33,7 +33,73 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Architectural and Interior Design Services",
+    "provider": {
+      "@type": "Organization",
+      "name": "Urban Ways",
+      "url": "https://www.urbanways.co.in",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "823 First Floor Indira Nagar Colony Road, Vasant Vihar Phase 2",
+        "addressLocality": "Dehradun",
+        "addressRegion": "Uttarakhand",
+        "postalCode": "248006",
+        "addressCountry": "IN"
+      },
+      "telephone": "+917248877772",
+      "email": "info@urbanways.co.in"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Dehradun"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Architectural Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Master Planning",
+            "description": "Comprehensive master planning and urban design services"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Interior Design",
+            "description": "Complete interior design solutions for residential and commercial spaces"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Turnkey Solutions",
+            "description": "End-to-end project delivery from concept to completion"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "3D Visualization",
+            "description": "Photorealistic 3D renderings and virtual walkthroughs"
+          }
+        }
+      ]
+    }
+  }
+  </script>
+
   <!-- Web App Manifest -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#e91e63">
@@ -42,7 +108,6 @@
 
   <!-- Humans.txt -->
   <link rel="author" href="/humans.txt">
-
 </head>
 <body>
 
