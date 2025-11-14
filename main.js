@@ -76,16 +76,13 @@ class LoadingScreen {
 }
 
 // ===================================
-// HEADER SCROLL EFFECT WITH PARALLAX
+// HEADER SCROLL EFFECT
 // ===================================
 
 class HeaderScroll {
   constructor() {
     this.header = document.getElementById('header');
     this.scrollThreshold = 50;
-    this.heroSection = document.querySelector('.hero-section');
-    this.heroBg = document.querySelector('.hero-bg');
-    this.heroContent = document.querySelector('.hero-content');
     this.init();
   }
 
@@ -95,40 +92,17 @@ class HeaderScroll {
     // Use throttled scroll handler for better performance
     window.addEventListener('scroll', throttle(() => {
       this.handleScroll();
-      this.handleParallax();
-    }, 16)); // ~60fps
+    }, 100));
 
     // Check on load
     this.handleScroll();
   }
 
   handleScroll() {
-    const scrollY = window.scrollY;
-
-    if (scrollY > this.scrollThreshold) {
+    if (window.scrollY > this.scrollThreshold) {
       this.header.classList.add('scrolled');
     } else {
       this.header.classList.remove('scrolled');
-    }
-  }
-
-  handleParallax() {
-    if (!this.heroSection || !this.heroBg || !this.heroContent) return;
-
-    const scrollY = window.scrollY;
-    const heroHeight = this.heroSection.offsetHeight;
-
-    // Only apply parallax when hero is visible
-    if (scrollY < heroHeight) {
-      // Parallax background - slower scroll
-      const bgParallax = scrollY * 0.5;
-      this.heroBg.style.transform = `translate3d(0, ${bgParallax}px, 0)`;
-
-      // Content fade and slight movement
-      const contentOpacity = 1 - (scrollY / heroHeight) * 1.5;
-      const contentTranslate = scrollY * 0.3;
-      this.heroContent.style.opacity = Math.max(0, contentOpacity);
-      this.heroContent.style.transform = `translate3d(0, ${contentTranslate}px, 0)`;
     }
   }
 }
@@ -234,7 +208,7 @@ class HamburgerMenu {
 }
 
 // ===================================
-// PREMIUM SMOOTH SCROLL FOR ANCHOR LINKS
+// SMOOTH SCROLL FOR ANCHOR LINKS
 // ===================================
 
 class SmoothScroll {
@@ -245,49 +219,30 @@ class SmoothScroll {
   init() {
     // Select all anchor links that start with #
     const anchorLinks = document.querySelectorAll('a[href^="#"]');
-
+    
     anchorLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
-
+        
         // Skip if href is just #
         if (href === '#') return;
-
+        
         const target = document.querySelector(href);
-
+        
         if (target) {
           e.preventDefault();
-
+          
           // Calculate offset for fixed header
           const headerHeight = document.getElementById('header')?.offsetHeight || 0;
           const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-          const startPosition = window.pageYOffset;
-          const distance = targetPosition - startPosition;
-          const duration = 1200; // Longer duration for premium feel
-          let startTime = null;
-
-          // Premium easing function (easeOutExpo)
-          const easeOutExpo = (t) => {
-            return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-          };
-
-          const animation = (currentTime) => {
-            if (startTime === null) startTime = currentTime;
-            const timeElapsed = currentTime - startTime;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const ease = easeOutExpo(progress);
-
-            window.scrollTo(0, startPosition + distance * ease);
-
-            if (timeElapsed < duration) {
-              requestAnimationFrame(animation);
-            } else {
-              // Update URL without jumping
-              history.pushState(null, null, href);
-            }
-          };
-
-          requestAnimationFrame(animation);
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Update URL without jumping
+          history.pushState(null, null, href);
         }
       });
     });
@@ -355,18 +310,14 @@ class ScrollReveal {
     if (this.elements.length === 0) return;
 
     const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
+      threshold: 0.15,
+      rootMargin: '0px 0px -80px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Add a slight stagger effect for elements revealed at the same time
-          setTimeout(() => {
-            entry.target.classList.add('active');
-          }, index * 50); // 50ms stagger
-
+          entry.target.classList.add('active');
           // Unobserve after animation to improve performance
           observer.unobserve(entry.target);
         }
@@ -412,35 +363,24 @@ class AnimatedCounter {
   }
 
   animateCounters() {
-    this.counters.forEach((counter, index) => {
+    this.counters.forEach(counter => {
       const target = parseInt(counter.getAttribute('data-target'));
-      const duration = 2500; // 2.5 seconds for smoother animation
-      const startTime = performance.now();
+      const duration = 2000; // 2 seconds
+      const increment = target / (duration / 16); // 60fps
+      let current = 0;
 
-      // Easing function - easeOutExpo
-      const easeOutExpo = (t) => {
-        return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-      };
-
-      const updateCounter = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = easeOutExpo(progress);
-        const current = Math.floor(easedProgress * target);
-
-        counter.textContent = current;
-
-        if (progress < 1) {
+      const updateCounter = () => {
+        current += increment;
+        
+        if (current < target) {
+          counter.textContent = Math.floor(current);
           requestAnimationFrame(updateCounter);
         } else {
           counter.textContent = target;
         }
       };
 
-      // Stagger the start of each counter
-      setTimeout(() => {
-        requestAnimationFrame(updateCounter);
-      }, index * 150);
+      updateCounter();
     });
   }
 }
@@ -696,72 +636,6 @@ class MobileDropdownToggle {
 
 
 // ===================================
-// PREMIUM PARALLAX EFFECTS
-// ===================================
-
-class ParallaxEffects {
-  constructor() {
-    this.portfolioCards = document.querySelectorAll('.portfolio-card');
-    this.serviceCards = document.querySelectorAll('.service-card');
-    this.init();
-  }
-
-  init() {
-    // Add mouse move parallax to cards
-    this.addCardParallax();
-
-    // Add smooth scroll parallax to sections
-    this.addSectionParallax();
-  }
-
-  addCardParallax() {
-    const cards = [...this.portfolioCards, ...this.serviceCards];
-
-    cards.forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px) scale(1.02)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-  }
-
-  addSectionParallax() {
-    const sections = document.querySelectorAll('section');
-
-    window.addEventListener('scroll', throttle(() => {
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-
-        if (scrollProgress > 0 && scrollProgress < 1) {
-          const parallaxValue = (scrollProgress - 0.5) * 30;
-          const images = section.querySelectorAll('img');
-
-          images.forEach(img => {
-            if (!img.closest('.hero-section')) { // Skip hero images
-              img.style.transform = `translate3d(0, ${parallaxValue}px, 0)`;
-            }
-          });
-        }
-      });
-    }, 16));
-  }
-}
-
-// ===================================
 // INITIALIZE ALL MODULES
 // ===================================
 
@@ -794,8 +668,7 @@ class App {
       new BackToTop();
       new LazyLoadImages();
       new ImageErrorHandler();
-      new ParallaxEffects();
-
+      
       // Initialize mobile dropdown and make it globally accessible
       window.mobileDropdown = new MobileDropdownToggle();
     } catch (error) {
