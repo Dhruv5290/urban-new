@@ -1,0 +1,28 @@
+/* TEAM */
+
+Company: Urban Ways (Urbanways)
+Website: https://www.urbanways.co.in
+Email: info@urbanways.co.in
+Phone: +91 724 887 7772
+Location: Dehradun, Uttarakhand, India
+
+/* SITE */
+
+Standards: HTML5, CSS3, JavaScript ES6+
+Components: Responsive Design, SEO Optimized, PWA Ready
+Software: VS Code, Git, Adobe Creative Suite
+Fonts: Playfair Display, Poppins (Google Fonts)
+Icons: Font Awesome 6.4.0
+
+/* THANKS */
+
+Photography: Unsplash Contributors
+Community: Stack Overflow, MDN Web Docs
+Inspiration: Modern Architecture & Interior Design
+
+/* SITE INFO */
+
+Last update: 2025/01/14
+Language: English / हिन्दी
+Doctype: HTML5
+IDE: Visual Studio Code
