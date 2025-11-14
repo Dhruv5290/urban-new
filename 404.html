@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Urban Ways</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-page::before {
+      content: '404';
+      position: absolute;
+      font-size: 25rem;
+      font-weight: 700;
+      color: rgba(233, 30, 99, 0.05);
+      font-family: 'Playfair Display', serif;
+      z-index: 0;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .error-content {
+      text-align: center;
+      color: #ffffff;
+      z-index: 1;
+      position: relative;
+      max-width: 700px;
+    }
+
+    .error-code {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 15vw, 10rem);
+      font-weight: 700;
+      color: #e91e63;
+      margin: 0;
+      line-height: 1;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .error-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 500;
+      margin: 1.5rem 0 1rem;
+      color: #ffffff;
+      animation: fadeInUp 1s ease;
+    }
+
+    .error-message {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .error-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1.4s ease;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      font-weight: 500;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .btn-primary {
+      background: #e91e63;
+      color: #ffffff;
+      border: 2px solid #e91e63;
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background: #ffffff;
+      color: #1a1a1a;
+      transform: translateY(-2px);
+    }
+
+    .error-links {
+      margin-top: 4rem;
+      animation: fadeInUp 1.6s ease;
+    }
+
+    .error-links h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #c9a961;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .quick-links {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .quick-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .quick-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #e91e63;
+      transition: width 0.3s ease;
+    }
+
+    .quick-links a:hover {
+      color: #e91e63;
+    }
+
+    .quick-links a:hover::after {
+      width: 100%;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Logo */
+    .error-logo {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      z-index: 1001;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .error-logo a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .error-logo .urban {
+      color: #ffffff;
+    }
+
+    .error-logo .ways {
+      color: #e91e63;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .error-page::before {
+        font-size: 15rem;
+      }
+
+      .error-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .quick-links {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .error-page::before {
+        font-size: 10rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo -->
+  <div class="error-logo">
+    <a href="index.html">
+      <span class="urban">Urban</span><span class="ways">ways</span>
+    </a>
+  </div>
+
+  <!-- Error Page Content -->
+  <div class="error-page">
+    <div class="error-content">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-title">Page Not Found</h2>
+      <p class="error-message">
+        Oops! The page you're looking for seems to have been relocated or doesn't exist.
+        Let's get you back on track to exploring beautiful designs.
+      </p>
+
+      <div class="error-actions">
+        <a href="index.html" class="btn-primary">
+          <i class="fas fa-home"></i>
+          Back to Home
+        </a>
+        <a href="contact.html" class="btn-secondary">
+          <i class="fas fa-envelope"></i>
+          Contact Us
+        </a>
+      </div>
+
+      <div class="error-links">
+        <h3>Quick Links</h3>
+        <div class="quick-links">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="hospitality.html">Portfolio</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Add simple console message
+    console.log('%c404 Error - Page Not Found', 'color: #e91e63; font-size: 20px; font-weight: bold;');
+    console.log('If you believe this is an error, please contact us at info@urbanways.co.in');
+
+    // Track 404 errors (optional)
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'exception', {
+        'description': '404 Error: ' + window.location.pathname,
+        'fatal': false
+      });
+    }
+  </script>
+</body>
+</html>
