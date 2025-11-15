@@ -51,15 +51,45 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
-  <!-- Web App Manifest -->
-  <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#e91e63">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-  <!-- Humans.txt -->
-  <link rel="author" href="/humans.txt">
-
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Residential Projects Portfolio",
+    "description": "Explore Urbanways' residential architecture portfolio featuring luxury homes, villas, and apartments designed for modern living in Dehradun.",
+    "url": "https://www.urbanways.co.in/residential.html",
+    "mainEntity": {
+      "@type": "CreativeWork",
+      "name": "Residential Architecture Portfolio",
+      "creator": {
+        "@type": "Organization",
+        "name": "Urban Ways",
+        "url": "https://www.urbanways.co.in"
+      }
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.urbanways.co.in/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Portfolio",
+        "item": "https://www.urbanways.co.in/#portfolio"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Residential",
+        "item": "https://www.urbanways.co.in/residential.html"
+      }]
+    }
+  }
+  </script>
 </head>
 <body>
 
