@@ -3627,7 +3627,7 @@ html {
 /* Blog Post Content */
 .blog-post-content {
   background: var(--white);
-  padding: 60px 0 80px;
+  padding: 60px 0 40px;
 }
 
 .blog-post-content .container {
@@ -3972,7 +3972,7 @@ html {
   }
 
   .blog-post-content {
-    padding: 40px 0 60px;
+    padding: 40px 0 30px;
   }
 
   .blog-post-content .container {
