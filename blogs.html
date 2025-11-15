@@ -32,6 +32,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Blog - Urban Ways Design Insights">
   <meta name="twitter:description" content="Explore design trends, tips, and insights from Urbanways experts.">
+  <meta name="twitter:image" content="https://www.urbanways.co.in/assets/images/og-image.jpg">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
@@ -67,6 +68,26 @@
     }
   }
   </script>
+
+  <!-- Breadcrumb Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.urbanways.co.in/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://www.urbanways.co.in/blogs.html"
+    }]
+  }
+  </script>
+
   <!-- Web App Manifest -->
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#e91e63">
