@@ -393,6 +393,7 @@ overflow: hidden;
 display: flex;
 align-items: center;
 justify-content: center;
+padding-top: 80px;
 }
 .hero-bg {
 position: absolute;
