@@ -277,25 +277,28 @@ class ActiveNavLink {
   }
 
   updateActiveLink() {
-    let currentSection = '';
-    
-    this.sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
+    // Use requestAnimationFrame to batch layout reads
+    requestAnimationFrame(() => {
+      let currentSection = '';
       const scrollPosition = window.pageYOffset + 200;
-      
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        currentSection = section.getAttribute('id');
-      }
-    });
 
-    this.navLinks.forEach(link => {
-      link.classList.remove('active');
-      const href = link.getAttribute('href');
-      
-      if (href === `#${currentSection}`) {
-        link.classList.add('active');
-      }
+      this.sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      this.navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+
+        if (href === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
     });
   }
 }

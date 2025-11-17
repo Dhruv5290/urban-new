@@ -87,11 +87,14 @@
     .hero-content{text-align:center;z-index:2;padding:2rem}
     .hero-title{font-size:clamp(2rem,5vw,3.5rem);margin:1rem 0;font-weight:700}
     .cta-btn{display:inline-block;padding:1rem 2rem;background:#e91e63;color:#fff;text-decoration:none;border-radius:4px;margin-top:1.5rem}
+    /* Font Awesome font-display override */
+    @font-face{font-family:'Font Awesome 6 Brands';font-style:normal;font-weight:400;font-display:swap;src:url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2) format('woff2')}
+    @font-face{font-family:'Font Awesome 6 Free';font-style:normal;font-weight:900;font-display:swap;src:url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2) format('woff2')}
   </style>
 
   <!-- Stylesheet with preload -->
-  <link rel="preload" href="style.css" as="style">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="style.css?v=v2.5.0" as="style">
+  <link rel="stylesheet" href="style.css?v=v2.5.0">
 
   <!-- Preload LCP image -->
   <link rel="preload" as="image" href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" fetchpriority="high">
@@ -567,6 +570,6 @@
   </a>
 
   <!-- JavaScript -->
-  <script src="main.js" defer></script>
+  <script src="main.js?v=v2.5.0" defer></script>
 </body>
 </html>
