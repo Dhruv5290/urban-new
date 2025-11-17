@@ -393,7 +393,6 @@ overflow: hidden;
 display: flex;
 align-items: center;
 justify-content: center;
-padding-top: 80px;
 }
 .hero-bg {
 position: absolute;
@@ -419,6 +418,7 @@ align-items: center;
 text-align: center;
 color: var(--white);
 padding: 0 5%;
+padding-top: 80px;
 z-index: 2;
 max-width: 1000px;
 }
