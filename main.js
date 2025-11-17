@@ -636,6 +636,56 @@ class MobileDropdownToggle {
 
 
 // ===================================
+// BLOG CATEGORY FILTER
+// ===================================
+
+class BlogFilter {
+  constructor() {
+    this.filterButtons = document.querySelectorAll('.category-btn');
+    this.blogCards = document.querySelectorAll('.blog-card');
+    this.init();
+  }
+
+  init() {
+    if (this.filterButtons.length === 0 || this.blogCards.length === 0) return;
+
+    this.filterButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        this.handleFilterClick(e.target);
+      });
+    });
+  }
+
+  handleFilterClick(button) {
+    const category = button.getAttribute('data-category');
+
+    // Update active button
+    this.filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    // Filter blog cards
+    this.filterCards(category);
+  }
+
+  filterCards(category) {
+    this.blogCards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category');
+      const cardLink = card.closest('.blog-card-link') || card;
+
+      if (category === 'all' || cardCategory === category) {
+        // Show card
+        cardLink.style.display = '';
+        card.style.animation = 'fadeIn 0.5s ease-in';
+      } else {
+        // Hide card
+        cardLink.style.display = 'none';
+      }
+    });
+  }
+}
+
+
+// ===================================
 // INITIALIZE ALL MODULES
 // ===================================
 
@@ -668,7 +718,8 @@ class App {
       new BackToTop();
       new LazyLoadImages();
       new ImageErrorHandler();
-      
+      new BlogFilter();
+
       // Initialize mobile dropdown and make it globally accessible
       window.mobileDropdown = new MobileDropdownToggle();
     } catch (error) {
@@ -696,6 +747,7 @@ if (typeof module !== 'undefined' && module.exports) {
     ScrollReveal,
     AnimatedCounter,
     BackToTop,
+    BlogFilter,
     MobileDropdownToggle
   };
 }
