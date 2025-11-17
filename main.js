@@ -99,11 +99,15 @@ class HeaderScroll {
   }
 
   handleScroll() {
-    if (window.scrollY > this.scrollThreshold) {
-      this.header.classList.add('scrolled');
-    } else {
-      this.header.classList.remove('scrolled');
-    }
+    // Use requestAnimationFrame to avoid forced reflow
+    requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      if (scrollY > this.scrollThreshold) {
+        this.header.classList.add('scrolled');
+      } else {
+        this.header.classList.remove('scrolled');
+      }
+    });
   }
 }
 

@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ7KDQXZQC"></script>
+  <!-- Google tag (gtag.js) - Deferred for performance -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-MZ7KDQXZQC');
+  // Defer loading GA until page is interactive
+  function loadGA() {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-MZ7KDQXZQC';
+    document.head.appendChild(script);
+    script.onload = function() {
+      gtag('js', new Date());
+      gtag('config', 'G-MZ7KDQXZQC');
+    };
+  }
+
+  // Load after page is interactive
+  if (document.readyState === 'complete') {
+    setTimeout(loadGA, 1000);
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(loadGA, 1000);
+    });
+  }
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,6 +92,9 @@
   <!-- Stylesheet with preload -->
   <link rel="preload" href="style.css" as="style">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Preload LCP image -->
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" fetchpriority="high">
 
   <!-- Structured Data -->
   <script type="application/ld+json">
