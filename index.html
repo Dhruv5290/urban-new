@@ -18,12 +18,26 @@
     };
   }
 
-  // Load after page is interactive
+  // Load GA only after user interaction or after delay
+  let gaLoaded = false;
+
+  function initGA() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+    loadGA();
+  }
+
+  // Load on user interaction (scroll, click, touch)
+  ['scroll', 'mousemove', 'touchstart', 'click'].forEach(function(event) {
+    window.addEventListener(event, initGA, { once: true, passive: true });
+  });
+
+  // Fallback: Load after 3 seconds of inactivity
   if (document.readyState === 'complete') {
-    setTimeout(loadGA, 1000);
+    setTimeout(initGA, 3000);
   } else {
     window.addEventListener('load', function() {
-      setTimeout(loadGA, 1000);
+      setTimeout(initGA, 3000);
     });
   }
 </script>
@@ -69,6 +83,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
   <!-- Fonts with optimized loading -->
@@ -96,8 +111,14 @@
   <link rel="preload" href="style.css?v=v2.5.0" as="style">
   <link rel="stylesheet" href="style.css?v=v2.5.0">
 
-  <!-- Preload LCP image -->
-  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" fetchpriority="high">
+  <!-- Preload LCP image with srcset for responsive -->
+  <link rel="preload" as="image"
+        href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80"
+        imagesrcset="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=768&q=80 768w,
+                     https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1024&q=80 1024w,
+                     https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80 1920w"
+        imagesizes="100vw"
+        fetchpriority="high">
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -322,6 +343,10 @@
             <a href="hospitality.html" style="text-decoration: none; color: inherit;">
               <div class="portfolio-card-image">
                 <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
+                     srcset="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80 400w,
+                             https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80 600w,
+                             https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80 800w"
+                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                      alt="Hospitality interior design by Urbanways Dehradun - luxury hotel lobby with modern sustainable architecture"
                      loading="lazy"
                      width="800"
@@ -338,6 +363,10 @@
             <a href="commercial.html" style="text-decoration: none; color: inherit;">
               <div class="portfolio-card-image">
                 <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+                     srcset="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80 400w,
+                             https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80 600w,
+                             https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80 800w"
+                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                      alt="Commercial office interior design in Dehradun - modern workspace by top architects"
                      loading="lazy"
                      width="800"
@@ -354,6 +383,10 @@
             <a href="residential.html" style="text-decoration: none; color: inherit;">
               <div class="portfolio-card-image">
                 <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+                     srcset="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400&q=80 400w,
+                             https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80 600w,
+                             https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80 800w"
+                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                      alt="Residential interior design in Dehradun - luxury home by best interior designers"
                      loading="lazy"
                      width="800"
@@ -370,6 +403,10 @@
             <a href="social-infrastructure.html" style="text-decoration: none; color: inherit;">
               <div class="portfolio-card-image">
                 <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80"
+                     srcset="https://images.unsplash.com/photo-1524813686514-a57563d77965?w=400&q=80 400w,
+                             https://images.unsplash.com/photo-1524813686514-a57563d77965?w=600&q=80 600w,
+                             https://images.unsplash.com/photo-1524813686514-a57563d77965?w=800&q=80 800w"
+                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                      alt="Social infrastructure architecture in Dehradun - schools and healthcare facilities by top architects"
                      loading="lazy"
                      width="800"
