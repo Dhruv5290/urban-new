@@ -119,14 +119,7 @@
   <link rel="preload" href="style.css?v=v2.6.0" as="style">
   <link rel="stylesheet" href="style.css?v=v2.6.0">
 
-  <!-- Preload LCP image with srcset for responsive -->
-  <link rel="preload" as="image"
-        href="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80"
-        imagesrcset="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=768&q=80 768w,
-                     https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1024&q=80 1024w,
-                     https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80 1920w"
-        imagesizes="100vw"
-        fetchpriority="high">
+  <!-- Hero background loaded after critical content -->
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -193,8 +186,29 @@
   </script>
 </head>
 <body>
+  <!-- Critical performance script -->
+  <script>
+    // Hide loading screen immediately for faster FCP
+    setTimeout(function() {
+      var loader = document.getElementById('loadingScreen');
+      if (loader) {
+        loader.style.display = 'none';
+      }
+    }, 100);
+
+    // Lazy load hero background after page renders
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var heroBg = document.querySelector('.hero-bg');
+        if (heroBg) {
+          heroBg.classList.add('loaded');
+        }
+      }, 500);
+    });
+  </script>
+
   <!-- Loading Screen -->
-  <div class="loading-screen" id="loadingScreen" aria-hidden="true">
+  <div class="loading-screen" id="loadingScreen" aria-hidden="true" style="display:none">
     <div class="loader" role="status">
       <span class="sr-only">Loading...</span>
     </div>
