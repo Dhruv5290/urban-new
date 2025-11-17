@@ -400,8 +400,11 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
-url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80') center/cover no-repeat;
+background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
 animation: zoomIn 20s ease-in-out infinite alternate;
 will-change: transform;
 }
