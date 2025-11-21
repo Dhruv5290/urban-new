@@ -99,9 +99,9 @@ class HeaderScroll {
   }
 
   handleScroll() {
-    // Use requestAnimationFrame to avoid forced reflow
+    // Cache scrollY value before requestAnimationFrame to avoid forced reflow
+    const scrollY = window.scrollY;
     requestAnimationFrame(() => {
-      const scrollY = window.scrollY;
       if (scrollY > this.scrollThreshold) {
         this.header.classList.add('scrolled');
       } else {
@@ -277,17 +277,20 @@ class ActiveNavLink {
   }
 
   updateActiveLink() {
-    // Use requestAnimationFrame to batch layout reads
+    // Cache scroll position and section data before rAF to avoid forced reflow
+    const scrollPosition = window.pageYOffset + 200;
+    const sectionData = Array.from(this.sections).map(section => ({
+      id: section.getAttribute('id'),
+      top: section.offsetTop,
+      height: section.clientHeight
+    }));
+
     requestAnimationFrame(() => {
       let currentSection = '';
-      const scrollPosition = window.pageYOffset + 200;
 
-      this.sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          currentSection = section.getAttribute('id');
+      sectionData.forEach(section => {
+        if (scrollPosition >= section.top && scrollPosition < section.top + section.height) {
+          currentSection = section.id;
         }
       });
 
