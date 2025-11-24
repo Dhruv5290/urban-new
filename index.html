@@ -1,45 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) - Deferred for performance -->
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KM0MF30WX3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  // Defer loading GA until page is interactive
-  function loadGA() {
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-MZ7KDQXZQC';
-    document.head.appendChild(script);
-    script.onload = function() {
-      gtag('js', new Date());
-      gtag('config', 'G-MZ7KDQXZQC');
-    };
-  }
-
-  // Load GA only after user interaction or after delay
-  let gaLoaded = false;
-
-  function initGA() {
-    if (gaLoaded) return;
-    gaLoaded = true;
-    loadGA();
-  }
-
-  // Load on user interaction (scroll, click, touch)
-  ['scroll', 'mousemove', 'touchstart', 'click'].forEach(function(event) {
-    window.addEventListener(event, initGA, { once: true, passive: true });
-  });
-
-  // Fallback: Load after 3 seconds of inactivity
-  if (document.readyState === 'complete') {
-    setTimeout(initGA, 3000);
-  } else {
-    window.addEventListener('load', function() {
-      setTimeout(initGA, 3000);
-    });
-  }
+  gtag('config', 'G-KM0MF30WX3');
 </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
